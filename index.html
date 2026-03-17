@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Cost Guard</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #38bdf8;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      margin: auto;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button {
+      background: #38bdf8;
+      border: none;
+      padding: 10px 20px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    pre {
+      text-align: left;
+      background: black;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 AI Cost Guard</h1>
+  <p>Track & control your AI usage cost in real-time</p>
+
+  <div class="card">
+    <input id="user" placeholder="User ID" value="user_123">
+    <input id="input" placeholder="Input tokens" value="1000">
+    <input id="output" placeholder="Output tokens" value="500">
+
+    <button onclick="track()">Check Cost</button>
+
+    <pre id="result"></pre>
+  </div>
+
+  <script>
+    async function track() {
+      const res = await fetch("YOUR_SUPABASE_FUNCTION_URL", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": "test_key_123"
+        },
+        body: JSON.stringify({
+          user_id: document.getElementById("user").value,
+          input_tokens: Number(document.getElementById("input").value),
+          output_tokens: Number(document.getElementById("output").value)
+        })
+      });
+
+      const data = await res.json();
+      document.getElementById("result").innerText =
+        JSON.stringify(data, null, 2);
+    }
+  </script>
+
+</body>
+</html>
