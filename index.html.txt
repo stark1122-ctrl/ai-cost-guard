@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Cost Guard</title>
+</head>
+<body>
+  <h1>AI Cost Guard 🚀</h1>
+
+  <button onclick="track()">Test API</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    async function track() {
+      const res = await fetch(https://bglkcieiqwjwzjgtrdrg.supabase.co/functions/v1/dynamic-endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": "test_key_123"
+        },
+        body: JSON.stringify({
+          user_id: "user_123",
+          input_tokens: 1000,
+          output_tokens: 500
+        })
+      });
+
+      const data = await res.json();
+      document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
